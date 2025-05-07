@@ -1,0 +1,1592 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Rimba Collection - Online Clothing Shopping (Rwanda)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+      --primary-color: #1e40af; /* Indigo-800 */
+      --secondary-color: #10b981; /* Emerald-500 */
+      --text-primary: #111827; /* Gray-900 */
+      --text-secondary: #6b7280; /* Gray-500 */
+      --background-light: #f9fafb; /* Gray-50 */
+      --background-dark: #111827; /* Gray-900 */
+      --link-color: #2563eb; /* Blue-600 */
+      --link-hover-color: #1d4ed8; /* Blue-700 */
+      --error-color: #ef4444; /* Red-500 */
+      --success-color: #10b981; /* Emerald-500 */
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      box-sizing: border-box;
+      margin: 0;
+      background-color: var(--background-light);
+      color: var(--text-primary);
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    /* Button border animation */
+    .big-border-button a {
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .big-border-button a:hover {
+      border-color: #fff;
+      background-color: rgba(255,255,255,0.1);
+    }
+    /* Image hover effect */
+    .thumb img {
+      transition: transform 0.3s;
+      border-radius: 0.375rem;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .thumb:hover img {
+      transform: scale(1.05);
+    }
+    /* Modal animations */
+    .popupContainer {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .modal_close:hover {
+      transform: rotate(90deg);
+      transition: transform 0.3s;
+    }
+    /* Pricing card lift effect */
+    .pricing-item {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pricing-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    /* FadeIn keyframes */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+    }
+    header a,
+    header button,
+    nav a,
+    nav button {
+      color: white;
+    }
+    nav a:hover,
+    nav a:focus,
+    nav button:hover,
+    nav button:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    #mobile-menu {
+      background-color: var(--primary-color);
+      border-top-color: rgba(30,64,175,0.3);
+    }
+    #mobile-menu a:hover,
+    #mobile-menu a:focus,
+    #mobile-menu button:hover,
+    #mobile-menu button:focus {
+      background-color: #1e3a8a; /* Indigo-900 */
+      outline: none;
+    }
+    /* Focus rings */
+    input:focus,
+    select:focus,
+    button:focus,
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--link-hover-color);
+    }
+    /* Inputs and selects */
+    input,
+    select,
+    textarea {
+      border-color: #d1d5db; /* Gray-300 */
+      color: var(--text-primary);
+      background-color: white;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px var(--link-hover-color);
+    }
+    /* Product cards */
+    .add-to-cart-btn {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .add-to-cart-btn:hover,
+    .add-to-cart-btn:focus {
+      background-color: var(--link-hover-color);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--link-hover-color);
+    }
+    /* Product detail modal */
+    #productDetailPrice {
+      color: var(--primary-color);
+    }
+    #addToCartDetailBtn {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    #addToCartDetailBtn:hover,
+    #addToCartDetailBtn:focus {
+      background-color: var(--link-hover-color);
+      outline: none;
+    }
+    /* Cart sidebar */
+    #cartSidebar h2 {
+      color: var(--primary-color);
+    }
+    #closeCartBtn:hover,
+    #closeCartBtn:focus {
+      color: var(--primary-color);
+      outline: none;
+    }
+    #cartItems input[type="number"]:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px var(--link-hover-color);
+      outline: none;
+    }
+    /* Checkout modal */
+    #checkoutTitle {
+      color: var(--primary-color);
+    }
+    #closeCheckoutBtn:hover,
+    #closeCheckoutBtn:focus {
+      color: var(--primary-color);
+      outline: none;
+    }
+    #checkoutForm input:focus,
+    #checkoutForm textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px var(--link-hover-color);
+      outline: none;
+    }
+    #checkoutForm button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    #checkoutForm button[type="submit"]:hover,
+    #checkoutForm button[type="submit"]:focus {
+      background-color: var(--link-hover-color);
+      outline: none;
+    }
+    /* Owl Carousel styles */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      will-change: transform;
+    }
+    .carousel-item {
+      min-width: 100%;
+      user-select: none;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    .carousel-item-inner {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .carousel-item-inner:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #ddd;
+      transition: transform 0.3s ease;
+    }
+    .carousel-item-inner:hover img {
+      transform: scale(1.05);
+    }
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .carousel-button {
+      background: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 0.375rem;
+      transition: background 0.3s ease;
+    }
+    .carousel-button:hover,
+    .carousel-button:focus {
+      background: rgba(0,0,0,0.6);
+      outline: none;
+    }
+    /* Isotope-like filtering animations */
+    #productsGrid {
+      transition: all 0.5s ease;
+    }
+    .product-card {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .product-card.hidden {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+      position: absolute;
+    }
+    /* Tab switching animations */
+    .tab-content {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.4s ease, max-height 0.4s ease;
+    }
+    .tab-content.active {
+      opacity: 1;
+      max-height: 2000px; /* large enough */
+      overflow: visible;
+    }
+    /* Chatbot styles - restored original position and style */
+    #chatbot {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 320px;
+      max-height: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      font-family: 'Montserrat', sans-serif;
+    }
+    #chatbotHeader {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 16px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #chatbotMessages {
+      flex-grow: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    #chatbotInputContainer {
+      border-top: 1px solid #ddd;
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+    }
+    #chatbotInput {
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 14px;
+      outline: none;
+      color: var(--text-primary);
+      background-color: white;
+    }
+    #chatbotSendBtn {
+      background-color: var(--primary-color);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    #chatbotSendBtn:hover,
+    #chatbotSendBtn:focus {
+      background-color: var(--link-hover-color);
+      outline: none;
+    }
+    .chatbot-message {
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .chatbot-message.user {
+      text-align: right;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .chatbot-message.bot {
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    /* Footer styles */
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+    footer a:hover,
+    footer a:focus {
+      color: white;
+      outline: none;
+    }
+    footer form input,
+    footer form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      border: none;
+      margin-bottom: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      color: var(--text-primary);
+      background-color: white;
+    }
+    footer form input:focus,
+    footer form textarea:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
+    }
+    footer form button {
+      background-color: var(--secondary-color);
+      color: var(--background-light);
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    footer form button:hover,
+    footer form button:focus {
+      background-color: #059669; /* Emerald-600 */
+      outline: none;
+    }
+    footer .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    footer .footer-section {
+      flex: 1 1 300px;
+      min-width: 280px;
+    }
+    footer .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    footer .footer-logo img {
+      height: 40px;
+      width: 40px;
+      border-radius: 9999px;
+      margin-right: 0.75rem;
+    }
+    footer .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      user-select: none;
+    }
+  </style>
+ </head>
+ <body class="flex flex-col min-h-screen">
+  <!-- Header -->
+  <header class="shadow sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 bg-[var(--primary-color)]">
+   <a aria-label="Rimba Collection Home" class="flex items-center select-none" href="#home" id="logoLink">
+    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-white text-[var(--primary-color)] font-bold text-xl select-none mr-3" aria-hidden="true">
+      RC
+    </div>
+    <span class="text-white text-2xl font-semibold">
+     Rimba Collection
+    </span>
+   </a>
+   <nav aria-label="Primary Navigation" class="hidden md:flex space-x-8 font-semibold text-white" role="navigation" id="desktopNav">
+    <button aria-selected="true" class="tab-button" data-tab="home" role="tab" tabindex="0">
+     Home
+    </button>
+    <button aria-selected="false" class="tab-button" data-tab="men" role="tab" tabindex="-1">
+     Men
+    </button>
+    <button aria-selected="false" class="tab-button" data-tab="women" role="tab" tabindex="-1">
+     Women
+    </button>
+    <button aria-selected="false" class="tab-button" data-tab="accessories" role="tab" tabindex="-1">
+     Accessories
+    </button>
+    <button aria-label="Open shopping cart" class="flex items-center space-x-1 hover:underline focus:underline focus:outline-none" id="openCartBtn" role="button" tabindex="0">
+     <i class="fas fa-shopping-cart">
+     </i>
+     <span>
+      Cart
+     </span>
+    </button>
+   </nav>
+   <div class="md:hidden">
+    <button aria-label="Toggle menu" class="text-white focus:outline-none focus:ring-2 focus:ring-white" id="mobile-menu-button" type="button">
+     <i class="fas fa-bars fa-lg">
+     </i>
+    </button>
+   </div>
+  </header>
+  <nav aria-label="Mobile Navigation" class="hidden md:hidden bg-[var(--primary-color)] border-t border-[rgba(30,64,175,0.3)]" id="mobile-menu" role="navigation">
+   <button aria-selected="true" class="block w-full text-left px-4 py-3 text-white hover:bg-[#1e3a8a] focus:bg-[#1e3a8a] focus:outline-none tab-button" data-tab="home" role="tab" tabindex="0" type="button">
+    Home
+   </button>
+   <button aria-selected="false" class="block w-full text-left px-4 py-3 text-white hover:bg-[#1e3a8a] focus:bg-[#1e3a8a] focus:outline-none tab-button" data-tab="men" role="tab" tabindex="-1" type="button">
+    Men
+   </button>
+   <button aria-selected="false" class="block w-full text-left px-4 py-3 text-white hover:bg-[#1e3a8a] focus:bg-[#1e3a8a] focus:outline-none tab-button" data-tab="women" role="tab" tabindex="-1" type="button">
+    Women
+   </button>
+   <button aria-selected="false" class="block w-full text-left px-4 py-3 text-white hover:bg-[#1e3a8a] focus:bg-[#1e3a8a] focus:outline-none tab-button" data-tab="accessories" role="tab" tabindex="-1" type="button">
+    Accessories
+   </button>
+   <button class="w-full text-left px-4 py-3 text-white hover:bg-[#1e3a8a] focus:bg-[#1e3a8a] focus:outline-none flex items-center space-x-1" id="mobileOpenCartBtn" type="button">
+    <i class="fas fa-shopping-cart">
+    </i>
+    <span>
+     Cart
+    </span>
+   </button>
+  </nav>
+  <!-- Carousel -->
+  <section aria-label="Featured products carousel" class="carousel mt-6">
+   <div aria-atomic="true" aria-live="polite" class="carousel-track" id="carouselTrack" tabindex="0">
+    <!-- Carousel items injected by JS -->
+   </div>
+   <div class="carousel-controls">
+    <button aria-label="Previous slide" class="carousel-button" id="carouselPrev" type="button">
+     <i class="fas fa-chevron-left">
+     </i>
+    </button>
+    <button aria-label="Next slide" class="carousel-button" id="carouselNext" type="button">
+     <i class="fas fa-chevron-right">
+     </i>
+    </button>
+   </div>
+  </section>
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" id="home" tabindex="-1">
+   <!-- Search and Filters -->
+   <section aria-label="Search and filter products" class="mb-8">
+    <div class="flex flex-col md:flex-row md:items-center md:space-x-6 space-y-4 md:space-y-0">
+     <input aria-label="Search products" class="flex-grow border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color" id="searchInput" placeholder="Search products..." style="--tw-ring-color: var(--primary-color)" type="text"/>
+     <select aria-label="Filter by category" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color" id="categoryFilter" style="--tw-ring-color: var(--primary-color)">
+      <option value="">
+       All Categories
+      </option>
+      <option value="Men">
+       Men
+      </option>
+      <option value="Women">
+       Women
+      </option>
+      <option value="Accessories">
+       Accessories
+      </option>
+     </select>
+     <select aria-label="Filter by size" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color" id="sizeFilter" style="--tw-ring-color: var(--primary-color)">
+      <option value="">
+       All Sizes
+      </option>
+      <option value="XS">
+       XS
+      </option>
+      <option value="S">
+       S
+      </option>
+      <option value="M">
+       M
+      </option>
+      <option value="L">
+       L
+      </option>
+      <option value="XL">
+       XL
+      </option>
+     </select>
+     <select aria-label="Filter by price" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color" id="priceFilter" style="--tw-ring-color: var(--primary-color)">
+      <option value="">
+       All Prices
+      </option>
+      <option value="0-20">
+       Under $20
+      </option>
+      <option value="20-50">
+       $20 - $50
+      </option>
+      <option value="50-100">
+       $50 - $100
+      </option>
+      <option value="100-9999">
+       Above $100
+      </option>
+     </select>
+    </div>
+   </section>
+   <!-- Products Grid -->
+   <section aria-label="Product listings">
+    <div aria-atomic="true" aria-live="polite" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productsGrid">
+     <!-- Products injected by JS -->
+    </div>
+   </section>
+  </main>
+  <!-- Product Detail Modal -->
+  <div aria-describedby="productDetailDescription" aria-labelledby="productDetailTitle" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-60 popupContainer" id="productDetailModal" role="dialog">
+   <div class="bg-white rounded-lg max-w-5xl w-full max-h-full overflow-y-auto shadow-lg p-6 relative flex flex-col md:flex-row gap-6">
+    <button aria-label="Close product details" class="absolute top-4 right-4 text-gray-600 hover:text-primary-color modal_close focus:outline-none" id="closeProductDetail" type="button">
+     <i class="fas fa-times fa-lg">
+     </i>
+    </button>
+    <div class="md:w-1/2 flex justify-center items-center thumb">
+     <img alt="" class="w-full max-w-md rounded product-image" id="detailImage" src=""/>
+    </div>
+    <div class="md:w-1/2 flex flex-col justify-between">
+     <div>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4" id="productDetailTitle">
+      </h2>
+      <p class="text-gray-700 mb-4" id="productDetailDescription">
+      </p>
+      <p class="text-xl font-bold mb-6" id="productDetailPrice">
+      </p>
+      <div class="mb-6" id="sizeOptions">
+       <label class="block font-semibold mb-2" for="sizeSelect">
+        Select Size:
+       </label>
+       <select aria-label="Select product size" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary-color" id="sizeSelect">
+       </select>
+      </div>
+      <div class="mb-6">
+       <label class="block font-semibold mb-2" for="quantityInput">
+        Quantity:
+       </label>
+       <input aria-label="Select quantity" class="border border-gray-300 rounded-md px-3 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary-color" id="quantityInput" min="1" type="number" value="1"/>
+      </div>
+      <button aria-label="Add product to cart" class="text-white py-2 px-4 rounded-md font-semibold hover:bg-link-hover-color transition w-full mb-4" id="addToCartDetailBtn" style="background-color: var(--primary-color);" type="button">
+       Add to Cart
+      </button>
+      <button aria-label="Chat for bargaining" class="chat-btn w-full" id="chatBargainBtn" type="button">
+       Chat for Bargaining
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Shopping Cart Sidebar -->
+  <aside aria-label="Shopping cart" class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 flex flex-col" id="cartSidebar" tabindex="-1">
+   <div class="flex items-center justify-between p-4 border-b border-gray-200">
+    <h2 class="text-lg font-semibold">
+     Shopping Cart
+    </h2>
+    <button aria-label="Close cart" class="text-gray-600 hover:text-primary-color focus:outline-none" id="closeCartBtn" type="button">
+     <i class="fas fa-times fa-lg">
+     </i>
+    </button>
+   </div>
+   <div aria-live="polite" aria-relevant="additions removals" class="flex-grow overflow-y-auto p-4 space-y-4" id="cartItems" tabindex="0">
+    <!-- Cart items injected here -->
+   </div>
+   <div class="p-4 border-t border-gray-200">
+    <div class="flex justify-between font-semibold text-gray-700 mb-4">
+     <span>
+      Total:
+     </span>
+     <span id="cartTotal">
+      $0.00
+     </span>
+    </div>
+    <button aria-label="Proceed to checkout" class="w-full text-white py-2 rounded-md hover:bg-link-hover-color transition" id="checkoutBtn" style="background-color: var(--primary-color);" type="button">
+     Proceed to Checkout
+    </button>
+   </div>
+  </aside>
+  <!-- Overlay for Cart -->
+  <div class="fixed inset-0 bg-black bg-opacity-40 hidden z-40" id="cartOverlay" tabindex="-1">
+  </div>
+  <!-- Checkout Modal -->
+  <div aria-labelledby="checkoutTitle" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-60 popupContainer" id="checkoutModal" role="dialog">
+   <div class="bg-white rounded-lg max-w-lg w-full max-h-full overflow-y-auto shadow-lg p-6 relative">
+    <button aria-label="Close checkout" class="absolute top-4 right-4 text-gray-600 hover:text-primary-color modal_close focus:outline-none" id="closeCheckoutBtn" type="button">
+     <i class="fas fa-times fa-lg">
+     </i>
+    </button>
+    <h3 class="text-2xl font-semibold mb-6" id="checkoutTitle">
+     Checkout
+    </h3>
+    <form class="space-y-6" id="checkoutForm" novalidate>
+     <div>
+      <label class="block text-gray-700 font-medium mb-1" for="name">
+       Full Name
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color" id="name" name="name" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 font-medium mb-1" for="address">
+       Shipping Address
+      </label>
+      <textarea class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-color resize-none" id="address" name="address" required="" rows="3"></textarea>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-gray-800 mb-2">
+       Order Summary
+      </h4>
+      <ul aria-live="polite" aria-relevant="additions removals" class="max-h-40 overflow-y-auto border border-gray-200 rounded-md p-3 space-y-2 text-gray-700 text-sm" id="checkoutSummary">
+       <!-- Summary items injected here -->
+      </ul>
+      <div class="flex justify-between font-semibold text-gray-900 mt-3 text-lg">
+       <span>
+        Total:
+       </span>
+       <span id="checkoutTotal">
+        $0.00
+       </span>
+      </div>
+     </div>
+     <button class="w-full text-white py-3 rounded-md hover:bg-link-hover-color transition font-semibold" style="background-color: var(--primary-color);" type="submit">
+      Place Order
+     </button>
+    </form>
+   </div>
+  </div>
+  <!-- Chatbot -->
+  <div aria-describedby="chatbotMessages" aria-labelledby="chatbotHeader" aria-modal="true" id="chatbot" role="dialog">
+   <div class="select-none" id="chatbotHeader" style="background-color: var(--primary-color); color: white; padding: 12px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+    Bargain Chat
+    <button aria-label="Close chat" class="text-white hover:text-gray-300 focus:outline-none" id="closeChatbotBtn" type="button">
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </div>
+   <div aria-atomic="false" aria-live="polite" class="focus:outline-none" id="chatbotMessages" style="flex-grow: 1; padding: 12px 16px; overflow-y: auto; font-size: 14px; color: var(--text-primary);" tabindex="0">
+   </div>
+   <div id="chatbotInputContainer" style="border-top: 1px solid #ddd; padding: 8px 12px; display: flex; gap: 8px;">
+    <input aria-label="Chat input" autocomplete="off" id="chatbotInput" placeholder="Type your message..." style="flex-grow: 1; border: 1px solid #ccc; border-radius: 20px; padding: 8px 12px; font-size: 14px; outline: none; color: var(--text-primary); background-color: white;" type="text"/>
+    <button aria-label="Send message" id="chatbotSendBtn" style="background-color: var(--primary-color); border: none; color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600; transition: background-color 0.3s ease;" type="button">
+     Send
+    </button>
+   </div>
+  </div>
+  <!-- Footer -->
+  <footer>
+   <div class="footer-container">
+    <div class="footer-section">
+     <div class="footer-logo">
+      <div class="flex items-center justify-center h-10 w-10 rounded-full bg-white text-[var(--primary-color)] font-bold text-xl select-none mr-3" aria-hidden="true">
+        RC
+      </div>
+      <span>Rimba Collection</span>
+     </div>
+     <p>
+      &copy; 2024 Rimba Collection. All rights reserved.
+     </p>
+     <p>
+      Developed by
+      <a href="https://github.com/ElieMpuhwezimana" rel="noopener noreferrer" target="_blank">
+       Elie Mpuhwezimana
+      </a>
+     </p>
+    </div>
+    <div class="footer-section">
+     <h3 class="text-lg font-semibold mb-3">
+      Contact Us
+     </h3>
+     <p>
+      Email: <a href="mailto:contact@rimbacollection.com">contact@rimbacollection.com</a>
+     </p>
+     <p>
+      Phone: <a href="tel:+250788123456">+250 788 123 456</a>
+     </p>
+     <p>
+      Address: Kigali, Rwanda
+     </p>
+    </div>
+    <div class="footer-section">
+     <h3 class="text-lg font-semibold mb-3">
+      Send us a message
+     </h3>
+     <form id="footerContactForm" novalidate>
+      <input aria-label="Your name" id="contactName" name="contactName" placeholder="Your Name" required="" type="text"/>
+      <input aria-label="Your email" id="contactEmail" name="contactEmail" placeholder="Your Email" required="" type="email"/>
+      <textarea aria-label="Your message" id="contactMessage" name="contactMessage" placeholder="Your Message" required="" rows="4"></textarea>
+      <button type="submit">
+       Send Message
+      </button>
+     </form>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Product data with real images from Google (unsplash source)
+    const products = [
+      {
+        id: 1,
+        name: "Men's Classic White Shirt",
+        category: "Men",
+        size: ["S", "M", "L", "XL"],
+        price: 25.99,
+        image:
+          "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80",
+        description: "A timeless white shirt for men, perfect for formal and casual occasions.",
+      },
+      {
+        id: 2,
+        name: "Women's Red Summer Dress",
+        category: "Women",
+        size: ["XS", "S", "M", "L"],
+        price: 45.5,
+        image:
+          "one.jpg",
+        description: "Light and breezy red summer dress for women, ideal for warm weather.",
+      },
+      {
+        id: 3,
+        name: "Leather Wallet",
+        category: "Accessories",
+        size: [],
+        price: 19.99,
+        image:
+          "two.jpg",
+        description: "Durable leather wallet with multiple compartments.",
+      },
+      {
+        id: 4,
+        name: "Men's Blue Denim Jeans",
+        category: "Men",
+        size: ["M", "L", "XL"],
+        price: 39.99,
+        image:
+          "three.jpg",
+        description: "Comfortable and stylish blue denim jeans for men.",
+      },
+      {
+        id: 5,
+        name: "Women's Black Leather Jacket",
+        category: "Women",
+        size: ["S", "M", "L"],
+        price: 89.99,
+        image:
+          "four.jpg",
+        description: "Elegant black leather jacket for women, perfect for chilly days.",
+      },
+      {
+        id: 6,
+        name: "Unisex Baseball Cap",
+        category: "Accessories",
+        size: [],
+        price: 15.0,
+        image:
+          "five.jpg",
+        description: "Adjustable baseball cap suitable for all genders.",
+      },
+      {
+        id: 7,
+        name: "Men's Formal Black Shoes",
+        category: "Men",
+        size: ["M", "L", "XL"],
+        price: 59.99,
+        image:
+          "six.jpg",
+        description: "Classic black formal shoes for men, perfect for office and events.",
+      },
+      {
+        id: 8,
+        name: "Women's Casual Sneakers",
+        category: "Women",
+        size: ["S", "M", "L"],
+        price: 49.99,
+        image:
+          "seven.jpg",
+        description: "Comfortable and stylish sneakers for everyday wear.",
+      },
+      {
+        id: 9,
+        name: "Silk Scarf",
+        category: "Accessories",
+        size: [],
+        price: 22.5,
+        image:
+          "eight.jpg",
+        description: "Elegant silk scarf with vibrant colors.",
+      },
+      {
+        id: 10,
+        name: "Men's Sports Jacket",
+        category: "Men",
+        size: ["S", "M", "L", "XL"],
+        price: 75.0,
+        image:
+          "nine.jpg",
+        description: "Lightweight sports jacket for men, suitable for outdoor activities.",
+      },
+      {
+        id: 11,
+        name: "Women's Evening Gown",
+        category: "Women",
+        size: ["S", "M", "L"],
+        price: 120.0,
+        image:
+          "ten.jpg",
+        description: "Elegant evening gown for special occasions.",
+      },
+      {
+        id: 12,
+        name: "Canvas Backpack",
+        category: "Accessories",
+        size: [],
+        price: 35.0,
+        image:
+          "eleven.jpg",
+        description: "Durable canvas backpack with multiple compartments.",
+      },
+      {
+        id: 13,
+        name: "Men's Casual T-Shirt",
+        category: "Men",
+        size: ["XS", "S", "M", "L", "XL"],
+        price: 18.0,
+        image:
+          "twelve.jpg",
+        description: "Comfortable casual t-shirt for men, available in multiple colors.",
+      },
+      {
+        id: 14,
+        name: "Women's Yoga Pants",
+        category: "Women",
+        size: ["S", "M", "L"],
+        price: 29.99,
+        image:
+          "fourteen.jpg",
+        description: "Stretchy and comfortable yoga pants for women.",
+      },
+      {
+        id: 15,
+        name: "Woolen Gloves",
+        category: "Accessories",
+        size: [],
+        price: 12.0,
+        image:
+          "fifteen.jpg",
+        description: "Warm woolen gloves for cold weather.",
+      },
+    ];
+
+    let cart = {};
+
+    const productsGrid = document.getElementById("productsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sizeFilter = document.getElementById("sizeFilter");
+    const priceFilter = document.getElementById("priceFilter");
+    const cartSidebar = document.getElementById("cartSidebar");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const closeCheckoutBtn = document.getElementById("closeCheckoutBtn");
+    const checkoutForm = document.getElementById("checkoutForm");
+    const checkoutSummary = document.getElementById("checkoutSummary");
+    const checkoutTotal = document.getElementById("checkoutTotal");
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const mobileOpenCartBtn = document.getElementById("mobileOpenCartBtn");
+
+    const productDetailModal = document.getElementById("productDetailModal");
+    const closeProductDetail = document.getElementById("closeProductDetail");
+    const detailImage = document.getElementById("detailImage");
+    const productDetailTitle = document.getElementById("productDetailTitle");
+    const productDetailDescription = document.getElementById("productDetailDescription");
+    const productDetailPrice = document.getElementById("productDetailPrice");
+    const sizeOptions = document.getElementById("sizeOptions");
+    const sizeSelect = document.getElementById("sizeSelect");
+    const quantityInput = document.getElementById("quantityInput");
+    const addToCartDetailBtn = document.getElementById("addToCartDetailBtn");
+    const chatBargainBtn = document.getElementById("chatBargainBtn");
+
+    // Chatbot elements
+    const chatbot = document.getElementById("chatbot");
+    const chatbotMessages = document.getElementById("chatbotMessages");
+    const chatbotInput = document.getElementById("chatbotInput");
+    const chatbotSendBtn = document.getElementById("chatbotSendBtn");
+    const closeChatbotBtn = document.getElementById("closeChatbotBtn");
+
+    let currentProduct = null;
+
+    // Carousel variables
+    const carouselTrack = document.getElementById("carouselTrack");
+    const carouselPrev = document.getElementById("carouselPrev");
+    const carouselNext = document.getElementById("carouselNext");
+    let carouselIndex = 0;
+    let carouselInterval;
+
+    // Tab variables
+    const tabButtons = document.querySelectorAll(".tab-button");
+
+    // Render carousel items
+    function renderCarousel() {
+      carouselTrack.innerHTML = "";
+      // Show 4 featured products in carousel (first 4)
+      const featured = products.slice(0, 4);
+      featured.forEach((product) => {
+        const item = document.createElement("div");
+        item.className = "carousel-item";
+        item.innerHTML = `
+          <div class="carousel-item-inner thumb" tabindex="0" role="button" aria-label="View details for ${product.name}">
+            <img src="${product.image}" alt="Image of ${product.name}, category ${product.category}, priced at $${product.price.toFixed(2)}" loading="lazy" />
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-800 mb-1">${product.name}</h3>
+              <p class="text-gray-600 text-sm mb-2">${product.description}</p>
+              <span class="font-bold text-lg" style="color: var(--primary-color);">$${product.price.toFixed(2)}</span>
+            </div>
+          </div>
+        `;
+        item.querySelector(".carousel-item-inner").addEventListener("click", () => {
+          openProductDetail(product.id);
+        });
+        item.querySelector(".carousel-item-inner").addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openProductDetail(product.id);
+          }
+        });
+        carouselTrack.appendChild(item);
+      });
+      updateCarousel();
+    }
+
+    // Update carousel position
+    function updateCarousel() {
+      const width = carouselTrack.clientWidth;
+      carouselTrack.style.transform = `translateX(-${carouselIndex * width}px)`;
+    }
+
+    // Next slide
+    function nextSlide() {
+      carouselIndex++;
+      if (carouselIndex >= carouselTrack.children.length) {
+        carouselIndex = 0;
+      }
+      updateCarousel();
+    }
+
+    // Previous slide
+    function prevSlide() {
+      carouselIndex--;
+      if (carouselIndex < 0) {
+        carouselIndex = carouselTrack.children.length - 1;
+      }
+      updateCarousel();
+    }
+
+    // Start autoplay
+    function startCarouselAutoplay() {
+      carouselInterval = setInterval(nextSlide, 2500);
+    }
+
+    // Stop autoplay
+    function stopCarouselAutoplay() {
+      clearInterval(carouselInterval);
+    }
+
+    // Tab switching with animation
+    function switchTab(tab) {
+      tabButtons.forEach((btn) => {
+        const isActive = btn.dataset.tab === tab;
+        btn.setAttribute("aria-selected", isActive);
+        btn.tabIndex = isActive ? 0 : -1;
+      });
+      // Update filters and search for category tab
+      categoryFilter.value = tab === "home" ? "" : tab;
+      renderProducts(true);
+    }
+
+    // Render products with filtering and animation
+    function renderProducts(skipAnimation = false) {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      const size = sizeFilter.value;
+      const priceRange = priceFilter.value;
+
+      let filteredProducts = products.filter((product) => {
+        if (!product.name.toLowerCase().includes(searchTerm)) return false;
+        if (category && product.category !== category) return false;
+        if (size) {
+          if (!product.size.includes(size)) return false;
+        }
+        if (priceRange) {
+          const [min, max] = priceRange.split("-").map(Number);
+          if (product.price < min || product.price > max) return false;
+        }
+        return true;
+      });
+
+      // Animate filtering with fade and scale
+      const existingCards = Array.from(productsGrid.children);
+      existingCards.forEach(card => {
+        card.classList.add("hidden");
+      });
+
+      setTimeout(() => {
+        productsGrid.innerHTML = "";
+        if (filteredProducts.length === 0) {
+          productsGrid.innerHTML = `<p class="col-span-full text-center text-gray-500">No products found.</p>`;
+          return;
+        }
+        filteredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.className =
+            "product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer focus:outline-none focus:ring-2";
+          productCard.style.setProperty('--tw-ring-color', 'var(--primary-color)');
+          productCard.setAttribute("tabindex", "0");
+          productCard.setAttribute("role", "button");
+          productCard.setAttribute("aria-label", `View details for ${product.name}`);
+
+          productCard.innerHTML = `
+            <div class="thumb flex-grow">
+              <img
+                src="${product.image}"
+                alt="Image of ${product.name}, category ${product.category}, priced at $${product.price.toFixed(
+            2
+          )}"
+                class="w-full h-64 object-cover product-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-lg font-semibold text-gray-800 mb-1">${product.name}</h3>
+              <p class="text-gray-600 text-sm flex-grow">${product.description}</p>
+              <div class="mt-3 flex items-center justify-between">
+                <span class="font-bold text-lg" style="color: var(--primary-color);">$${product.price.toFixed(
+                  2
+                )}</span>
+                <button
+                  class="add-to-cart-btn px-3 py-1 rounded-md transition text-sm focus:outline-none focus:ring-2"
+                  data-id="${product.id}"
+                  aria-label="Add ${product.name} to cart"
+                  style="background-color: var(--primary-color); color: white;"
+                  onmouseover="this.style.backgroundColor='var(--link-hover-color)';"
+                  onmouseout="this.style.backgroundColor='var(--primary-color)';"
+                  onfocus="this.style.backgroundColor='var(--link-hover-color)';"
+                  onblur="this.style.backgroundColor='var(--primary-color)';"
+                  type="button"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          `;
+
+          productCard.addEventListener("click", (e) => {
+            if (e.target.closest(".add-to-cart-btn")) return;
+            openProductDetail(product.id);
+          });
+          productCard.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openProductDetail(product.id);
+            }
+          });
+
+          productsGrid.appendChild(productCard);
+
+          // Animate in
+          if (!skipAnimation) {
+            productCard.style.opacity = 0;
+            productCard.style.transform = "scale(0.8)";
+            setTimeout(() => {
+              productCard.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+              productCard.style.opacity = 1;
+              productCard.style.transform = "scale(1)";
+            }, 50);
+          }
+        });
+
+        document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const id = parseInt(btn.getAttribute("data-id"));
+            addToCart(id);
+          });
+        });
+      }, 300);
+    }
+
+    function openProductDetail(productId) {
+      currentProduct = products.find((p) => p.id === productId);
+      if (!currentProduct) return;
+
+      detailImage.src = currentProduct.image;
+      detailImage.alt = `Image of ${currentProduct.name}, category ${currentProduct.category}, priced at $${currentProduct.price.toFixed(2)}`;
+      productDetailTitle.textContent = currentProduct.name;
+      productDetailDescription.textContent = currentProduct.description;
+      productDetailPrice.textContent = `$${currentProduct.price.toFixed(2)}`;
+      productDetailPrice.style.color = "var(--primary-color)";
+
+      if (currentProduct.size.length > 0) {
+        sizeOptions.style.display = "block";
+        sizeSelect.innerHTML = "";
+        currentProduct.size.forEach((sz) => {
+          const option = document.createElement("option");
+          option.value = sz;
+          option.textContent = sz;
+          sizeSelect.appendChild(option);
+        });
+      } else {
+        sizeOptions.style.display = "none";
+      }
+
+      quantityInput.value = 1;
+
+      productDetailModal.classList.remove("hidden");
+      productDetailModal.classList.add("popupContainer");
+      productDetailModal.focus();
+    }
+
+    closeProductDetail.addEventListener("click", () => {
+      productDetailModal.classList.add("hidden");
+      productDetailModal.classList.remove("popupContainer");
+      currentProduct = null;
+    });
+    productDetailModal.addEventListener("click", (e) => {
+      if (e.target === productDetailModal) {
+        productDetailModal.classList.add("hidden");
+        productDetailModal.classList.remove("popupContainer");
+        currentProduct = null;
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (!productDetailModal.classList.contains("hidden")) {
+          productDetailModal.classList.add("hidden");
+          productDetailModal.classList.remove("popupContainer");
+          currentProduct = null;
+        }
+        if (!checkoutModal.classList.contains("hidden")) {
+          checkoutModal.classList.add("hidden");
+          checkoutModal.classList.remove("popupContainer");
+        }
+        if (!cartSidebar.classList.contains("translate-x-full")) {
+          closeCart();
+        }
+        if (!chatbot.classList.contains("hidden")) {
+          closeChatbot();
+        }
+      }
+    });
+
+    addToCartDetailBtn.addEventListener("click", () => {
+      if (!currentProduct) return;
+      const selectedSize = sizeSelect.value;
+      if (currentProduct.size.length > 0 && !selectedSize) {
+        alert("Please select a size.");
+        return;
+      }
+      const quantity = parseInt(quantityInput.value);
+      if (isNaN(quantity) || quantity < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+      addToCart(currentProduct.id, selectedSize, quantity);
+      productDetailModal.classList.add("hidden");
+      productDetailModal.classList.remove("popupContainer");
+    });
+
+    // Chat for Bargaining opens chatbot (added chatbot below)
+    chatBargainBtn.addEventListener("click", () => {
+      openChatbot();
+    });
+
+    function addToCart(productId, size = "", quantity = 1) {
+      const key = size ? `${productId}-${size}` : `${productId}`;
+      if (cart[key]) {
+        cart[key].quantity += quantity;
+      } else {
+        const product = products.find((p) => p.id === productId);
+        cart[key] = {
+          ...product,
+          quantity,
+          selectedSize: size,
+        };
+      }
+      saveCart();
+      renderCart();
+      openCart();
+    }
+
+    function removeFromCart(key) {
+      delete cart[key];
+      saveCart();
+      renderCart();
+    }
+
+    function updateQuantity(key, quantity) {
+      if (quantity < 1) return;
+      if (cart[key]) {
+        cart[key].quantity = quantity;
+        saveCart();
+        renderCart();
+      }
+    }
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+      const cartEntries = Object.entries(cart);
+
+      if (cartEntries.length === 0) {
+        cartItemsContainer.innerHTML = `<p class="text-center text-gray-500">Your cart is empty.</p>`;
+        cartTotalEl.textContent = "$0.00";
+        return;
+      }
+
+      let total = 0;
+
+      cartEntries.forEach(([key, item]) => {
+        total += item.price * item.quantity;
+
+        const cartItem = document.createElement("div");
+        cartItem.className = "flex items-center space-x-4";
+
+        cartItem.innerHTML = `
+          <img
+            src="${item.image}"
+            alt="Image of ${item.name} in cart"
+            class="w-16 h-20 object-cover rounded"
+            loading="lazy"
+          />
+          <div class="flex-grow">
+            <h4 class="font-semibold text-gray-800">${item.name}${item.selectedSize ? ` (Size: ${item.selectedSize})` : ""}</h4>
+            <p class="text-gray-600 text-sm">$${item.price.toFixed(2)}</p>
+            <div class="mt-1 flex items-center space-x-2">
+              <label for="qty-${key}" class="sr-only">Quantity</label>
+              <input
+                type="number"
+                id="qty-${key}"
+                min="1"
+                value="${item.quantity}"
+                class="w-16 border border-gray-300 rounded-md px-2 py-1 text-center focus:outline-none focus:ring-2"
+                aria-label="Quantity for ${item.name}${item.selectedSize ? ` size ${item.selectedSize}` : ""}"
+                style="--tw-ring-color: var(--primary-color)"
+              />
+              <button
+                class="text-red-600 hover:text-red-800 focus:outline-none"
+                aria-label="Remove ${item.name}${item.selectedSize ? ` size ${item.selectedSize}` : ""} from cart"
+                type="button"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        `;
+
+        const qtyInput = cartItem.querySelector("input[type='number']");
+        qtyInput.addEventListener("change", (e) => {
+          const val = parseInt(e.target.value);
+          if (isNaN(val) || val < 1) {
+            e.target.value = item.quantity;
+            return;
+          }
+          updateQuantity(key, val);
+        });
+
+        const removeBtn = cartItem.querySelector("button");
+        removeBtn.addEventListener("click", () => {
+          removeFromCart(key);
+        });
+
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function saveCart() {
+      localStorage.setItem("rimbaCart", JSON.stringify(cart));
+    }
+
+    function loadCart() {
+      const savedCart = localStorage.getItem("rimbaCart");
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+      }
+    }
+
+    function openCart() {
+      cartSidebar.classList.remove("translate-x-full");
+      cartOverlay.classList.remove("hidden");
+      cartSidebar.setAttribute("aria-hidden", "false");
+      cartSidebar.focus();
+    }
+
+    function closeCart() {
+      cartSidebar.classList.add("translate-x-full");
+      cartOverlay.classList.add("hidden");
+      cartSidebar.setAttribute("aria-hidden", "true");
+    }
+
+    function openCheckout() {
+      if (Object.keys(cart).length === 0) {
+        alert("Your cart is empty. Please add products before checkout.");
+        return;
+      }
+      renderCheckoutSummary();
+      checkoutModal.classList.remove("hidden");
+      checkoutModal.classList.add("popupContainer");
+      checkoutModal.querySelector("input, textarea").focus();
+    }
+
+    function closeCheckout() {
+      checkoutModal.classList.add("hidden");
+      checkoutModal.classList.remove("popupContainer");
+      checkoutForm.reset();
+    }
+
+    function renderCheckoutSummary() {
+      checkoutSummary.innerHTML = "";
+      let total = 0;
+      Object.values(cart).forEach((item) => {
+        total += item.price * item.quantity;
+        const li = document.createElement("li");
+        li.textContent = `${item.name}${item.selectedSize ? ` (Size: ${item.selectedSize})` : ""} x${item.quantity} - $${(
+          item.price * item.quantity
+        ).toFixed(2)}`;
+        checkoutSummary.appendChild(li);
+      });
+      checkoutTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    checkoutForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = checkoutForm.name.value.trim();
+      const address = checkoutForm.address.value.trim();
+
+      if (!name || !address) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      alert(
+        `Thank you, ${name}! Your order has been placed and will be shipped to:\n${address}`
+      );
+
+      cart = {};
+      saveCart();
+      renderCart();
+      closeCheckout();
+      closeCart();
+    });
+
+    // Footer contact form submission
+    const footerContactForm = document.getElementById("footerContactForm");
+    footerContactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = footerContactForm.contactName.value.trim();
+      const email = footerContactForm.contactEmail.value.trim();
+      const message = footerContactForm.contactMessage.value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      alert(`Thank you, ${name}! Your message has been received. We will contact you shortly.`);
+
+      footerContactForm.reset();
+    });
+
+    searchInput.addEventListener("input", () => renderProducts());
+    categoryFilter.addEventListener("change", () => {
+      switchTab(categoryFilter.value || "home");
+    });
+    sizeFilter.addEventListener("change", renderProducts);
+    priceFilter.addEventListener("change", renderProducts);
+
+    checkoutBtn.addEventListener("click", openCheckout);
+    closeCartBtn.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+    closeCheckoutBtn.addEventListener("click", closeCheckout);
+
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    openCartBtn.addEventListener("click", openCart);
+    mobileOpenCartBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      openCart();
+    });
+
+    document.querySelectorAll("nav a[href^='#']").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href").slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+          }
+        }
+      });
+    });
+
+    // Tab buttons event listeners
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        switchTab(btn.dataset.tab);
+        if (!mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+        }
+      });
+      btn.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          let idx = Array.from(tabButtons).indexOf(e.target);
+          if (e.key === "ArrowRight") {
+            idx = (idx + 1) % tabButtons.length;
+          } else {
+            idx = (idx - 1 + tabButtons.length) % tabButtons.length;
+          }
+          tabButtons[idx].focus();
+        }
+      });
+    });
+
+    // Chatbot functionality
+    function openChatbot() {
+      chatbot.style.display = "flex";
+      chatbotInput.value = "";
+      chatbotMessages.innerHTML = "";
+      addBotMessage("Hello! How can I assist you with bargaining today?");
+      chatbotInput.focus();
+    }
+
+    function closeChatbot() {
+      chatbot.style.display = "none";
+    }
+
+    closeChatbotBtn.addEventListener("click", closeChatbot);
+
+    chatbotSendBtn.addEventListener("click", sendMessage);
+    chatbotInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    function addUserMessage(text) {
+      const div = document.createElement("div");
+      div.className = "chatbot-message user";
+      div.textContent = text;
+      chatbotMessages.appendChild(div);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function addBotMessage(text) {
+      const div = document.createElement("div");
+      div.className = "chatbot-message bot";
+      div.textContent = text;
+      chatbotMessages.appendChild(div);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = chatbotInput.value.trim();
+      if (!text) return;
+      addUserMessage(text);
+      chatbotInput.value = "";
+      // Simple simulated bot response
+      setTimeout(() => {
+        if (text.toLowerCase().includes("price")) {
+          addBotMessage("I can help you with price negotiations. What product are you interested in?");
+        } else if (text.toLowerCase().includes("hello") || text.toLowerCase().includes("hi")) {
+          addBotMessage("Hello! Feel free to ask about any product or bargaining options.");
+        } else if (text.toLowerCase().includes("thank")) {
+          addBotMessage("You're welcome! Let me know if you need anything else.");
+        } else {
+          addBotMessage("Thanks for your message! Our team will get back to you shortly.");
+        }
+      }, 1000);
+    }
+
+    // Initialize
+    loadCart();
+    renderCarousel();
+    startCarouselAutoplay();
+    renderProducts();
+
+    // Carousel controls
+    carouselNext.addEventListener("click", () => {
+      nextSlide();
+      stopCarouselAutoplay();
+      startCarouselAutoplay();
+    });
+    carouselPrev.addEventListener("click", () => {
+      prevSlide();
+      stopCarouselAutoplay();
+      startCarouselAutoplay();
+    });
+
+    // Pause carousel on focus/hover
+    carouselTrack.addEventListener("mouseenter", stopCarouselAutoplay);
+    carouselTrack.addEventListener("mouseleave", startCarouselAutoplay);
+    carouselTrack.addEventListener("focusin", stopCarouselAutoplay);
+    carouselTrack.addEventListener("focusout", startCarouselAutoplay);
+  </script>
+ </body>
+</html>
